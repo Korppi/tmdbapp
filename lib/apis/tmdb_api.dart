@@ -9,14 +9,11 @@ class TMDBAPI {
   TMDBAPI(this._apiKey);
 
   Uri topRated<T>({int page = 1}) {
-    var endpointPart = '';
-    if (T == Movie) {
-      endpointPart = 'movie';
-    } else if (T == Tv) {
-      endpointPart = 'tv';
+    if (T != Movie && T != Tv) {
+      throw ('Generic type $T not supported');
     }
     return _buildUri(
-      endpoint: '$endpointPart/top_rated',
+      endpoint: '${T.toString().toLowerCase()}/top_rated',
       parameters: {'api_key': _apiKey, 'page': page.toString()},
     );
   }
