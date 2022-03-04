@@ -1,0 +1,17 @@
+### Movie related stuff
+
+### Get movies that are now playing
+
+GET {{baseUrl}}/movie/now_playing?{{apiKey}}&page=1
+
+### Get upcoming movies
+
+GET {{baseUrl}}/movie/upcoming?{{apiKey}}&page=1
+
+### Get popular movies
+
+GET {{baseUrl}}/movie/popular?{{apiKey}}&page=1
+
+### Get toprated movies
+
+GET {{baseUrl}}/movie/top_rated?{{apiKey}}&page=1

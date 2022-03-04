@@ -1,0 +1,11 @@
+### Poster example
+
+GET {{posterUrl}}/k6EOrckWFuz7I4z4wiRwz8zsj4H.jpg
+
+### Star Wars: Episode II - Attack of the Clones backdrop
+
+GET {{posterUrl}}/oijmHHYUb4F5owEqaBfwVmaOGrQ.jpg
+
+### Star Wars: Episode II - Attack of the Clones poster
+
+GET {{posterUrl}}/oZNPzxqM2s5DyVWab09NTQScDQt.jpg
