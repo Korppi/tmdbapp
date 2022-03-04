@@ -1,0 +1,10 @@
+### Search stuff https://developers.themoviedb.org/3/search/
+
+### Search movie stuff here 
+
+### Get movies (most simple example: only api_key and string to search)
+
+GET {{baseUrl}}/search/movie?{{apiKey}}&query=star
+
+### Get movies (most complicated example that i will ever be using in this project)
+GET {{baseUrl}}/search/movie?{{apiKey}}&query=star%20wars&page=1&include_adult=true&year=2016

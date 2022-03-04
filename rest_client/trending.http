@@ -1,0 +1,9 @@
+### Trending
+
+### Trending movies this week
+
+GET {{baseUrl}}/trending/movie/week?{{apiKey}}
+
+### Trending movies this day
+
+GET {{baseUrl}}/trending/movie/day?{{apiKey}}
