@@ -1,9 +1,14 @@
 import 'dart:convert';
 
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:tmdbapp/apis/tmdb_api.dart';
 import 'package:tmdbapp/models/movie/movie.dart';
 import 'package:tmdbapp/models/tv/tv.dart';
+import 'package:tmdbapp/utils/secrets.dart';
+
+final tmdbRepository =
+    Provider((ref) => TMDBRepository(TMDBAPI(Secrets.getApiKey()!)));
 
 class TMDBRepository {
   final TMDBAPI api;
@@ -27,6 +32,7 @@ class TMDBRepository {
   _fromMap<T>(dynamic data) {
     if (T == Movie) return Movie.fromMap(data) as T;
     if (T == Tv) return Tv.fromMap(data) as T;
+    throw ('Generic class ${T.runtimeType} is not supported!');
   }
 
   Future<T> _getData<T>(Uri uri, T Function(dynamic data) builder) async {
