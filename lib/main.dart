@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tmdbapp/utils/secrets.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Secrets.init();
+  if (Secrets.getApiKey() == null) {
+    // if there is no token then somethings wrong and we cannot start app
+    throw ('no token!');
+  }
   runApp(const MyApp());
 }
 
