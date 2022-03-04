@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart' as http;
+import 'package:tmdbapp/apis/apienums.dart';
 import 'package:tmdbapp/apis/tmdb_api.dart';
 import 'package:tmdbapp/models/movie/movie.dart';
 import 'package:tmdbapp/models/tv/tv.dart';
@@ -24,6 +25,66 @@ class TMDBRepository {
           var res = <T>[];
           for (var result in data['results']) {
             res.add(_fromMap<T>(result));
+          }
+          return res;
+        },
+      );
+
+  // TODO: maybe create these TV/MOVIE repos as its own repo with generic get method?
+  // for example, getTopRated and getPopular ARE IDENTICAL! like some others are too
+
+  Future<List<T>> getPopular<T>({int page = 1}) => _getData(
+        api.popular<T>(page: page),
+        (data) {
+          var res = <T>[];
+          for (var result in data['results']) {
+            res.add(_fromMap<T>(result));
+          }
+          return res;
+        },
+      );
+
+  Future<List<Movie>> getNowPlaying({int page = 1}) => _getData(
+        api.nowPlaying(page: page),
+        (data) {
+          var res = <Movie>[];
+          for (var result in data['results']) {
+            res.add(_fromMap<Movie>(result));
+          }
+          return res;
+        },
+      );
+
+  Future<List<T>> getTrending<T>(
+          {required TimeWindow timeWindow, int page = 1}) =>
+      _getData(
+        api.trending<T>(timeWindow: timeWindow, page: page),
+        (data) {
+          var res = <T>[];
+          for (var result in data['results']) {
+            res.add(_fromMap<T>(result));
+          }
+          return res;
+        },
+      );
+
+  Future<List<Movie>> geUpcoming({int page = 1}) => _getData(
+        api.upcoming(page: page),
+        (data) {
+          var res = <Movie>[];
+          for (var result in data['results']) {
+            res.add(_fromMap<Movie>(result));
+          }
+          return res;
+        },
+      );
+
+  Future<List<Tv>> getAiringToday({int page = 1}) => _getData(
+        api.airingToday(page: page),
+        (data) {
+          var res = <Tv>[];
+          for (var result in data['results']) {
+            res.add(_fromMap<Tv>(result));
           }
           return res;
         },

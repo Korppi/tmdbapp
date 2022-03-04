@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:tmdbapp/apis/apienums.dart';
 import 'package:tmdbapp/models/movie/movie.dart';
 import 'package:tmdbapp/models/tv/tv.dart';
 
@@ -18,15 +20,47 @@ class TMDBAPI {
     );
   }
 
-  // TODO: trending
+  Uri trending<T>({required TimeWindow timeWindow, int page = 1}) {
+    if (T != Movie && T != Tv) {
+      throw ('Generic type $T not supported');
+    }
+    return _buildUri(
+      endpoint:
+          'trending/${T.toString().toLowerCase()}/${timeWindow.lowerCaseString}',
+      parameters: {'api_key': _apiKey, 'page': page.toString()},
+    );
+  }
 
-  // TODO: now playing
+  Uri nowPlaying({int page = 1}) {
+    return _buildUri(
+      endpoint: 'movie/now_playing',
+      parameters: {'api_key': _apiKey, 'page': page.toString()},
+    );
+  }
 
-  // TODO: upcoming
+  Uri upcoming({int page = 1}) {
+    return _buildUri(
+      endpoint: 'movie/upcoming',
+      parameters: {'api_key': _apiKey, 'page': page.toString()},
+    );
+  }
 
-  // TODO: popular
+  Uri popular<T>({int page = 1}) {
+    if (T != Movie && T != Tv) {
+      throw ('Generic type $T not supported');
+    }
+    return _buildUri(
+      endpoint: '${T.toString().toLowerCase()}/popular',
+      parameters: {'api_key': _apiKey, 'page': page.toString()},
+    );
+  }
 
-  // TODO: on movies
+  Uri airingToday({int page = 1}) {
+    return _buildUri(
+      endpoint: 'tv/airing_today',
+      parameters: {'api_key': _apiKey, 'page': page.toString()},
+    );
+  }
 
   /// Builds URI with given endpoint and parameters
   Uri _buildUri({
