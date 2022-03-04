@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import 'genre.dart';
-import 'production_company.dart';
-import 'production_country.dart';
-import 'spoken_language.dart';
+import '../common/genre.dart';
+import '../common/production_company.dart';
+import '../common/production_country.dart';
+import '../common/spoken_language.dart';
 
 @immutable
 class Movie {
