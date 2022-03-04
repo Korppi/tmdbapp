@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'created_by.dart';
-import 'genre.dart';
+import '../common/genre.dart';
 import 'last_episode_to_air.dart';
 import 'network.dart';
-import 'production_company.dart';
-import 'production_country.dart';
+import '../common/production_company.dart';
+import '../common/production_country.dart';
 import 'season.dart';
-import 'spoken_language.dart';
+import '../common/spoken_language.dart';
 
 @immutable
 class Tv {
