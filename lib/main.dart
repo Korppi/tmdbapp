@@ -25,34 +25,36 @@ class MyApp extends HookConsumerWidget {
       title: 'TMDB App',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('TMDB App by Teppo'),
+          title: const Text('TMDB App by Teppo'),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () async {
-                  debugPrint('top rated movies pressed');
-                  var movies =
-                      await ref.read(tmdbRepository).getTopRated<Movie>();
-                  debugPrint('${movies.first.title}');
-                },
-                child: Text('top rated movies'),
-              ),
-              TextButton(
-                onPressed: () async {
-                  debugPrint('top rated tv shows pressed');
-                  var tvs = await ref.read(tmdbRepository).getTopRated<Tv>();
-                  debugPrint('${tvs.first.name}');
-                },
-                child: Text('top rated tv shows'),
-              ),
-            ],
-          ),
+        body: const Center(
+          child: Text('cent'),
         ),
+        bottomNavigationBar: BottomNavigationBar(
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
+            items: const [
+              BottomNavigationBarItem(
+                label: 'Home',
+                icon: Icon(Icons.home),
+                backgroundColor: Colors.grey,
+              ),
+              BottomNavigationBarItem(
+                label: 'Search',
+                icon: Icon(Icons.search),
+                backgroundColor: Colors.grey,
+              ),
+              BottomNavigationBarItem(
+                label: 'Watchlist',
+                icon: Icon(Icons.bookmark),
+                backgroundColor: Colors.grey,
+              ),
+              BottomNavigationBarItem(
+                label: 'Profile',
+                icon: Icon(Icons.person),
+                backgroundColor: Colors.grey,
+              ),
+            ]),
       ),
     );
   }
