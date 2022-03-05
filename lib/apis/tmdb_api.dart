@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:tmdbapp/apis/apienums.dart';
 import 'package:tmdbapp/models/movie/movie.dart';
 import 'package:tmdbapp/models/tv/tv.dart';
