@@ -30,9 +30,6 @@ class TMDBRepository {
         },
       );
 
-  // TODO: maybe create these TV/MOVIE repos as its own repo with generic get method?
-  // for example, getTopRated and getPopular ARE IDENTICAL! like some others are too
-
   Future<List<T>> getPopular<T>({int page = 1}) => _getData(
         api.popular<T>(page: page),
         (data) {
