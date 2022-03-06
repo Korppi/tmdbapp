@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tmdbapp/models/movie/movie.dart';
-import 'package:tmdbapp/models/tv/tv.dart';
-import 'package:tmdbapp/repositories/tmdb_repository.dart';
 import 'package:tmdbapp/utils/secrets.dart';
 
 Future<void> main() async {
@@ -31,30 +28,36 @@ class MyApp extends HookConsumerWidget {
           child: Text('cent'),
         ),
         bottomNavigationBar: BottomNavigationBar(
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-            items: const [
-              BottomNavigationBarItem(
-                label: 'Home',
-                icon: Icon(Icons.home),
-                backgroundColor: Colors.grey,
-              ),
-              BottomNavigationBarItem(
-                label: 'Search',
-                icon: Icon(Icons.search),
-                backgroundColor: Colors.grey,
-              ),
-              BottomNavigationBarItem(
-                label: 'Watchlist',
-                icon: Icon(Icons.bookmark),
-                backgroundColor: Colors.grey,
-              ),
-              BottomNavigationBarItem(
-                label: 'Profile',
-                icon: Icon(Icons.person),
-                backgroundColor: Colors.grey,
-              ),
-            ]),
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          currentIndex: 0,
+          enableFeedback: false,
+          onTap: (index) {
+            debugPrint('$index selected');
+          },
+          items: const [
+            BottomNavigationBarItem(
+              label: 'Home',
+              icon: Icon(Icons.home),
+              backgroundColor: Colors.grey,
+            ),
+            BottomNavigationBarItem(
+              label: 'Search',
+              icon: Icon(Icons.search),
+              backgroundColor: Colors.red,
+            ),
+            BottomNavigationBarItem(
+              label: 'Watchlist',
+              icon: Icon(Icons.bookmark),
+              backgroundColor: Colors.green,
+            ),
+            BottomNavigationBarItem(
+              label: 'Profile',
+              icon: Icon(Icons.person),
+              backgroundColor: Colors.brown,
+            ),
+          ],
+        ),
       ),
     );
   }
