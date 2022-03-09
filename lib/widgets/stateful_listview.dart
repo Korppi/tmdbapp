@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tmdbapp/widgets/stateful_listview_model.dart';
-import 'package:tmdbapp/widgets/stateful_listview_state.dart';
+import 'package:tmdbapp/widgets/states/stateful_listview_model.dart';
+import 'package:tmdbapp/widgets/states/stateful_listview_state.dart';
 
 class StatefulListview extends HookConsumerWidget {
   final String title;

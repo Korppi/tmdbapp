@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tmdbapp/apis/tmdb_api.dart';
 import 'package:tmdbapp/models/movie/movie.dart';
 import 'package:tmdbapp/repositories/tmdb_repository.dart';
 import 'package:tmdbapp/utils/secrets.dart';
 import 'package:tmdbapp/widgets/stateful_listview.dart';
-import 'package:tmdbapp/widgets/stateful_listview_model.dart';
-import 'package:tmdbapp/widgets/stateful_listview_state.dart';
+import 'package:tmdbapp/widgets/states/stateful_listview_model.dart';
+import 'package:tmdbapp/widgets/states/stateful_listview_state.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
