@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:tmdbapp/apis/tmdb_api.dart';
+import 'package:tmdbapp/models/movie/movie.dart';
+import 'package:tmdbapp/repositories/tmdb_repository.dart';
 import 'package:tmdbapp/utils/secrets.dart';
+import 'package:tmdbapp/widgets/stateful_listview.dart';
+import 'package:tmdbapp/widgets/stateful_listview_model.dart';
+import 'package:tmdbapp/widgets/stateful_listview_state.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +19,16 @@ Future<void> main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
+final buttonPopular =
+    StateNotifierProvider<StatefulListviewModel, StatefulListviewState>(
+  (ref) => StatefulListviewModel(ref.read(tmdbRepository).getPopular<Movie>),
+);
+
+final buttonTopRated =
+    StateNotifierProvider<StatefulListviewModel, StatefulListviewState>(
+  (ref) => StatefulListviewModel(ref.read(tmdbRepository).getTopRated<Movie>),
+);
+
 class MyApp extends HookConsumerWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -24,39 +40,13 @@ class MyApp extends HookConsumerWidget {
         appBar: AppBar(
           title: const Text('TMDB App by Teppo'),
         ),
-        body: const Center(
-          child: Text('cent'),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          currentIndex: 0,
-          enableFeedback: false,
-          onTap: (index) {
-            debugPrint('$index selected');
-          },
-          items: const [
-            BottomNavigationBarItem(
-              label: 'Home',
-              icon: Icon(Icons.home),
-              backgroundColor: Colors.grey,
-            ),
-            BottomNavigationBarItem(
-              label: 'Search',
-              icon: Icon(Icons.search),
-              backgroundColor: Colors.red,
-            ),
-            BottomNavigationBarItem(
-              label: 'Watchlist',
-              icon: Icon(Icons.bookmark),
-              backgroundColor: Colors.green,
-            ),
-            BottomNavigationBarItem(
-              label: 'Profile',
-              icon: Icon(Icons.person),
-              backgroundColor: Colors.brown,
-            ),
-          ],
+        body: Center(
+          child: Column(
+            children: [
+              StatefulListview('Popular', buttonPopular),
+              StatefulListview('TopRated', buttonTopRated),
+            ],
+          ),
         ),
       ),
     );
