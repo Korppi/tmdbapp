@@ -39,13 +39,11 @@ class MyApp extends HookConsumerWidget {
         appBar: AppBar(
           title: const Text('TMDB App by Teppo'),
         ),
-        body: Center(
-          child: Column(
-            children: [
-              StatefulListview('Popular', buttonPopular),
-              StatefulListview('TopRated', buttonTopRated),
-            ],
-          ),
+        body: Column(
+          children: [
+            StatefulListview('Popular', buttonPopular),
+            StatefulListview('Popular', buttonTopRated),
+          ],
         ),
       ),
     );
