@@ -9,6 +9,11 @@ class StatefulListviewModel extends StateNotifier<StatefulListviewState> {
   StatefulListviewModel(this.onPressed)
       : super(const StatefulListviewState.init());
 
+  starta() async {
+    var stuff = await onPressed();
+    state = StatefulListviewState.noError(stuff);
+  }
+
   testThisStuff() async {
     debugPrint('start: init -> loading after 2 sec');
     await Future.delayed(const Duration(seconds: 2));
