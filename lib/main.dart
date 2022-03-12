@@ -42,7 +42,7 @@ class MyApp extends HookConsumerWidget {
         body: Column(
           children: [
             StatefulListview('Popular', buttonPopular),
-            StatefulListview('Popular', buttonTopRated),
+            StatefulListview('TopRated', buttonTopRated),
           ],
         ),
       ),
