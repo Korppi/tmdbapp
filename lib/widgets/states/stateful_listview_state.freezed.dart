@@ -18,6 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$StatefulListviewStateTearOff {
   const _$StatefulListviewStateTearOff();
 
+  _Init init() {
+    return const _Init();
+  }
+
   _Loading loading() {
     return const _Loading();
   }
@@ -28,13 +32,15 @@ class _$StatefulListviewStateTearOff {
     );
   }
 
-  _Init init() {
-    return const _Init();
-  }
-
   _NoError noError(List<dynamic> list) {
     return _NoError(
       list,
+    );
+  }
+
+  _LoadingMore loadingMore(List<dynamic> oldList) {
+    return _LoadingMore(
+      oldList,
     );
   }
 }
@@ -46,51 +52,57 @@ const $StatefulListviewState = _$StatefulListviewStateTearOff();
 mixin _$StatefulListviewState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() init,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function() init,
     required TResult Function(List<dynamic> list) noError,
+    required TResult Function(List<dynamic> oldList) loadingMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function()? init,
     TResult Function(List<dynamic> list)? noError,
+    TResult Function(List<dynamic> oldList)? loadingMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function()? init,
     TResult Function(List<dynamic> list)? noError,
+    TResult Function(List<dynamic> oldList)? loadingMore,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
-    required TResult Function(_Init value) init,
     required TResult Function(_NoError value) noError,
+    required TResult Function(_LoadingMore value) loadingMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_Init value)? init,
     TResult Function(_NoError value)? noError,
+    TResult Function(_LoadingMore value)? loadingMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_Init value)? init,
     TResult Function(_NoError value)? noError,
+    TResult Function(_LoadingMore value)? loadingMore,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +126,133 @@ class _$StatefulListviewStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+abstract class _$InitCopyWith<$Res> {
+  factory _$InitCopyWith(_Init value, $Res Function(_Init) then) =
+      __$InitCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$InitCopyWithImpl<$Res>
+    extends _$StatefulListviewStateCopyWithImpl<$Res>
+    implements _$InitCopyWith<$Res> {
+  __$InitCopyWithImpl(_Init _value, $Res Function(_Init) _then)
+      : super(_value, (v) => _then(v as _Init));
+
+  @override
+  _Init get _value => super._value as _Init;
+}
+
+/// @nodoc
+
+class _$_Init with DiagnosticableTreeMixin implements _Init {
+  const _$_Init();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'StatefulListviewState.init()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'StatefulListviewState.init'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Init);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() loading,
+    required TResult Function(String message) error,
+    required TResult Function(List<dynamic> list) noError,
+    required TResult Function(List<dynamic> oldList) loadingMore,
+  }) {
+    return init();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+    TResult Function(List<dynamic> list)? noError,
+    TResult Function(List<dynamic> oldList)? loadingMore,
+  }) {
+    return init?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+    TResult Function(List<dynamic> list)? noError,
+    TResult Function(List<dynamic> oldList)? loadingMore,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_NoError value) noError,
+    required TResult Function(_LoadingMore value) loadingMore,
+  }) {
+    return init(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_NoError value)? noError,
+    TResult Function(_LoadingMore value)? loadingMore,
+  }) {
+    return init?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_NoError value)? noError,
+    TResult Function(_LoadingMore value)? loadingMore,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Init implements StatefulListviewState {
+  const factory _Init() = _$_Init;
+}
+
+/// @nodoc
 abstract class _$LoadingCopyWith<$Res> {
   factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
       __$LoadingCopyWithImpl<$Res>;
@@ -132,12 +271,19 @@ class __$LoadingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loading implements _Loading {
+class _$_Loading with DiagnosticableTreeMixin implements _Loading {
   const _$_Loading();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'StatefulListviewState.loading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'StatefulListviewState.loading'));
   }
 
   @override
@@ -152,10 +298,11 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() init,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function() init,
     required TResult Function(List<dynamic> list) noError,
+    required TResult Function(List<dynamic> oldList) loadingMore,
   }) {
     return loading();
   }
@@ -163,10 +310,11 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function()? init,
     TResult Function(List<dynamic> list)? noError,
+    TResult Function(List<dynamic> oldList)? loadingMore,
   }) {
     return loading?.call();
   }
@@ -174,10 +322,11 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function()? init,
     TResult Function(List<dynamic> list)? noError,
+    TResult Function(List<dynamic> oldList)? loadingMore,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -189,10 +338,11 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
-    required TResult Function(_Init value) init,
     required TResult Function(_NoError value) noError,
+    required TResult Function(_LoadingMore value) loadingMore,
   }) {
     return loading(this);
   }
@@ -200,10 +350,11 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_Init value)? init,
     TResult Function(_NoError value)? noError,
+    TResult Function(_LoadingMore value)? loadingMore,
   }) {
     return loading?.call(this);
   }
@@ -211,10 +362,11 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_Init value)? init,
     TResult Function(_NoError value)? noError,
+    TResult Function(_LoadingMore value)? loadingMore,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -260,15 +412,23 @@ class __$ErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Error implements _Error {
+class _$_Error with DiagnosticableTreeMixin implements _Error {
   const _$_Error(this.message);
 
   @override
   final String message;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'StatefulListviewState.error(message: $message)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'StatefulListviewState.error'))
+      ..add(DiagnosticsProperty('message', message));
   }
 
   @override
@@ -291,10 +451,11 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() init,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function() init,
     required TResult Function(List<dynamic> list) noError,
+    required TResult Function(List<dynamic> oldList) loadingMore,
   }) {
     return error(message);
   }
@@ -302,10 +463,11 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function()? init,
     TResult Function(List<dynamic> list)? noError,
+    TResult Function(List<dynamic> oldList)? loadingMore,
   }) {
     return error?.call(message);
   }
@@ -313,10 +475,11 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function()? init,
     TResult Function(List<dynamic> list)? noError,
+    TResult Function(List<dynamic> oldList)? loadingMore,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -328,10 +491,11 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
-    required TResult Function(_Init value) init,
     required TResult Function(_NoError value) noError,
+    required TResult Function(_LoadingMore value) loadingMore,
   }) {
     return error(this);
   }
@@ -339,10 +503,11 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_Init value)? init,
     TResult Function(_NoError value)? noError,
+    TResult Function(_LoadingMore value)? loadingMore,
   }) {
     return error?.call(this);
   }
@@ -350,10 +515,11 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_Init value)? init,
     TResult Function(_NoError value)? noError,
+    TResult Function(_LoadingMore value)? loadingMore,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -369,121 +535,6 @@ abstract class _Error implements StatefulListviewState {
   String get message;
   @JsonKey(ignore: true)
   _$ErrorCopyWith<_Error> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$InitCopyWith<$Res> {
-  factory _$InitCopyWith(_Init value, $Res Function(_Init) then) =
-      __$InitCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InitCopyWithImpl<$Res>
-    extends _$StatefulListviewStateCopyWithImpl<$Res>
-    implements _$InitCopyWith<$Res> {
-  __$InitCopyWithImpl(_Init _value, $Res Function(_Init) _then)
-      : super(_value, (v) => _then(v as _Init));
-
-  @override
-  _Init get _value => super._value as _Init;
-}
-
-/// @nodoc
-
-class _$_Init implements _Init {
-  const _$_Init();
-
-  @override
-  String toString() {
-    return 'StatefulListviewState.init()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Init);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function(String message) error,
-    required TResult Function() init,
-    required TResult Function(List<dynamic> list) noError,
-  }) {
-    return init();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(String message)? error,
-    TResult Function()? init,
-    TResult Function(List<dynamic> list)? noError,
-  }) {
-    return init?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(String message)? error,
-    TResult Function()? init,
-    TResult Function(List<dynamic> list)? noError,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Error value) error,
-    required TResult Function(_Init value) init,
-    required TResult Function(_NoError value) noError,
-  }) {
-    return init(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_Init value)? init,
-    TResult Function(_NoError value)? noError,
-  }) {
-    return init?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Error value)? error,
-    TResult Function(_Init value)? init,
-    TResult Function(_NoError value)? noError,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Init implements StatefulListviewState {
-  const factory _Init() = _$_Init;
 }
 
 /// @nodoc
@@ -518,15 +569,23 @@ class __$NoErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_NoError implements _NoError {
+class _$_NoError with DiagnosticableTreeMixin implements _NoError {
   const _$_NoError(this.list);
 
   @override
   final List<dynamic> list;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'StatefulListviewState.noError(list: $list)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'StatefulListviewState.noError'))
+      ..add(DiagnosticsProperty('list', list));
   }
 
   @override
@@ -549,10 +608,11 @@ class _$_NoError implements _NoError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() init,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function() init,
     required TResult Function(List<dynamic> list) noError,
+    required TResult Function(List<dynamic> oldList) loadingMore,
   }) {
     return noError(list);
   }
@@ -560,10 +620,11 @@ class _$_NoError implements _NoError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function()? init,
     TResult Function(List<dynamic> list)? noError,
+    TResult Function(List<dynamic> oldList)? loadingMore,
   }) {
     return noError?.call(list);
   }
@@ -571,10 +632,11 @@ class _$_NoError implements _NoError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function()? init,
     TResult Function(List<dynamic> list)? noError,
+    TResult Function(List<dynamic> oldList)? loadingMore,
     required TResult orElse(),
   }) {
     if (noError != null) {
@@ -586,10 +648,11 @@ class _$_NoError implements _NoError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
-    required TResult Function(_Init value) init,
     required TResult Function(_NoError value) noError,
+    required TResult Function(_LoadingMore value) loadingMore,
   }) {
     return noError(this);
   }
@@ -597,10 +660,11 @@ class _$_NoError implements _NoError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_Init value)? init,
     TResult Function(_NoError value)? noError,
+    TResult Function(_LoadingMore value)? loadingMore,
   }) {
     return noError?.call(this);
   }
@@ -608,10 +672,11 @@ class _$_NoError implements _NoError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
-    TResult Function(_Init value)? init,
     TResult Function(_NoError value)? noError,
+    TResult Function(_LoadingMore value)? loadingMore,
     required TResult orElse(),
   }) {
     if (noError != null) {
@@ -627,5 +692,165 @@ abstract class _NoError implements StatefulListviewState {
   List<dynamic> get list;
   @JsonKey(ignore: true)
   _$NoErrorCopyWith<_NoError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$LoadingMoreCopyWith<$Res> {
+  factory _$LoadingMoreCopyWith(
+          _LoadingMore value, $Res Function(_LoadingMore) then) =
+      __$LoadingMoreCopyWithImpl<$Res>;
+  $Res call({List<dynamic> oldList});
+}
+
+/// @nodoc
+class __$LoadingMoreCopyWithImpl<$Res>
+    extends _$StatefulListviewStateCopyWithImpl<$Res>
+    implements _$LoadingMoreCopyWith<$Res> {
+  __$LoadingMoreCopyWithImpl(
+      _LoadingMore _value, $Res Function(_LoadingMore) _then)
+      : super(_value, (v) => _then(v as _LoadingMore));
+
+  @override
+  _LoadingMore get _value => super._value as _LoadingMore;
+
+  @override
+  $Res call({
+    Object? oldList = freezed,
+  }) {
+    return _then(_LoadingMore(
+      oldList == freezed
+          ? _value.oldList
+          : oldList // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_LoadingMore with DiagnosticableTreeMixin implements _LoadingMore {
+  const _$_LoadingMore(this.oldList);
+
+  @override
+  final List<dynamic> oldList;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'StatefulListviewState.loadingMore(oldList: $oldList)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'StatefulListviewState.loadingMore'))
+      ..add(DiagnosticsProperty('oldList', oldList));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _LoadingMore &&
+            const DeepCollectionEquality().equals(other.oldList, oldList));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(oldList));
+
+  @JsonKey(ignore: true)
+  @override
+  _$LoadingMoreCopyWith<_LoadingMore> get copyWith =>
+      __$LoadingMoreCopyWithImpl<_LoadingMore>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() loading,
+    required TResult Function(String message) error,
+    required TResult Function(List<dynamic> list) noError,
+    required TResult Function(List<dynamic> oldList) loadingMore,
+  }) {
+    return loadingMore(oldList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+    TResult Function(List<dynamic> list)? noError,
+    TResult Function(List<dynamic> oldList)? loadingMore,
+  }) {
+    return loadingMore?.call(oldList);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+    TResult Function(List<dynamic> list)? noError,
+    TResult Function(List<dynamic> oldList)? loadingMore,
+    required TResult orElse(),
+  }) {
+    if (loadingMore != null) {
+      return loadingMore(oldList);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_NoError value) noError,
+    required TResult Function(_LoadingMore value) loadingMore,
+  }) {
+    return loadingMore(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_NoError value)? noError,
+    TResult Function(_LoadingMore value)? loadingMore,
+  }) {
+    return loadingMore?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_NoError value)? noError,
+    TResult Function(_LoadingMore value)? loadingMore,
+    required TResult orElse(),
+  }) {
+    if (loadingMore != null) {
+      return loadingMore(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadingMore implements StatefulListviewState {
+  const factory _LoadingMore(List<dynamic> oldList) = _$_LoadingMore;
+
+  List<dynamic> get oldList;
+  @JsonKey(ignore: true)
+  _$LoadingMoreCopyWith<_LoadingMore> get copyWith =>
       throw _privateConstructorUsedError;
 }
