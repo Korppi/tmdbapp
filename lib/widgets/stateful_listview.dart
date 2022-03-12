@@ -14,35 +14,7 @@ class StatefulListview extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pro = ref.watch(provider);
-    return pro.when(
-        loading: () => Text('load'),
-        error: (error) => Text('$error'),
-        init: () {
-          ref.read(provider.notifier).starta();
-          return CircularProgressIndicator();
-        },
-        noError: (items) {
-          if (items is List<Movie>) {
-            debugPrint('leffoja on');
-          }
-          return Container(
-            height: 200,
-            child: ListView.builder(
-              itemCount: items.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (BuildContext context, int index) {
-                final movie = items[index] as Movie;
-                return Container(
-                  width: 100,
-                  height: 100,
-                  child: ListTile(
-                    title: Text('${movie.title!.substring(0, 3)}'),
-                  ),
-                );
-              },
-            ),
-          );
-        });
+    return Container();
   }
 }
 
