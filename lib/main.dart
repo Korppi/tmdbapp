@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:tmdbapp/apis/apienums.dart';
 import 'package:tmdbapp/models/movie/movie.dart';
+import 'package:tmdbapp/models/tv/tv.dart';
 import 'package:tmdbapp/repositories/tmdb_repository.dart';
 import 'package:tmdbapp/utils/secrets.dart';
 import 'package:tmdbapp/widgets/stateful_listview.dart';
@@ -18,14 +20,49 @@ Future<void> main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-final buttonPopular =
+final listviewPopularMovie =
     StateNotifierProvider<StatefulListviewModel, StatefulListviewState>(
   (ref) => StatefulListviewModel(ref.read(tmdbRepository).getPopular<Movie>),
 );
 
-final buttonTopRated =
+final listviewPopularTv =
+    StateNotifierProvider<StatefulListviewModel, StatefulListviewState>(
+  (ref) => StatefulListviewModel(ref.read(tmdbRepository).getPopular<Tv>),
+);
+
+final listviewTopratedMovie =
     StateNotifierProvider<StatefulListviewModel, StatefulListviewState>(
   (ref) => StatefulListviewModel(ref.read(tmdbRepository).getTopRated<Movie>),
+);
+
+final listviewTopratedTv =
+    StateNotifierProvider<StatefulListviewModel, StatefulListviewState>(
+  (ref) => StatefulListviewModel(ref.read(tmdbRepository).getTopRated<Tv>),
+);
+
+final listviewNowPlaying =
+    StateNotifierProvider<StatefulListviewModel, StatefulListviewState>(
+  (ref) => StatefulListviewModel(ref.read(tmdbRepository).getNowPlaying),
+);
+
+final listviewTrendingMovie =
+    StateNotifierProvider<StatefulListviewModel, StatefulListviewState>(
+  (ref) => StatefulListviewModel(ref.read(tmdbRepository).getTrending<Movie>),
+);
+
+final listviewTrendingTv =
+    StateNotifierProvider<StatefulListviewModel, StatefulListviewState>(
+  (ref) => StatefulListviewModel(ref.read(tmdbRepository).getTrending<Tv>),
+);
+
+final listviewUpcoming =
+    StateNotifierProvider<StatefulListviewModel, StatefulListviewState>(
+  (ref) => StatefulListviewModel(ref.read(tmdbRepository).geUpcoming),
+);
+
+final listviewAiringToday =
+    StateNotifierProvider<StatefulListviewModel, StatefulListviewState>(
+  (ref) => StatefulListviewModel(ref.read(tmdbRepository).getAiringToday),
 );
 
 class MyApp extends HookConsumerWidget {
@@ -39,10 +76,85 @@ class MyApp extends HookConsumerWidget {
         appBar: AppBar(
           title: const Text('TMDB App by Teppo'),
         ),
-        body: Column(
+        body: ListView(
           children: [
-            StatefulListview('Popular', buttonPopular),
-            StatefulListview('TopRated', buttonTopRated),
+            StatefulListview(
+              'Popular Movie',
+              listviewPopularMovie,
+              key: UniqueKey(),
+            ),
+            SizedBox(
+              height: 100,
+              width: 100,
+            ),
+            StatefulListview(
+              'Popular Tv',
+              listviewPopularTv,
+              key: UniqueKey(),
+            ),
+            SizedBox(
+              height: 100,
+              width: 100,
+            ),
+            StatefulListview(
+              'TopRated Movie',
+              listviewTopratedMovie,
+              key: UniqueKey(),
+            ),
+            SizedBox(
+              height: 100,
+              width: 100,
+            ),
+            StatefulListview(
+              'TopRated Tv',
+              listviewTopratedTv,
+              key: UniqueKey(),
+            ),
+            SizedBox(
+              height: 100,
+              width: 100,
+            ),
+            StatefulListview(
+              'Now playing',
+              listviewNowPlaying,
+              key: UniqueKey(),
+            ),
+            SizedBox(
+              height: 100,
+              width: 100,
+            ),
+            StatefulListview(
+              'Trending movie',
+              listviewTrendingMovie,
+              key: UniqueKey(),
+            ),
+            SizedBox(
+              height: 100,
+              width: 100,
+            ),
+            StatefulListview(
+              'Trending Tv',
+              listviewTrendingTv,
+              key: UniqueKey(),
+            ),
+            SizedBox(
+              height: 100,
+              width: 100,
+            ),
+            StatefulListview(
+              'Upcoming',
+              listviewUpcoming,
+              key: UniqueKey(),
+            ),
+            SizedBox(
+              height: 100,
+              width: 100,
+            ),
+            StatefulListview(
+              'Airing Today',
+              listviewAiringToday,
+              key: UniqueKey(),
+            ),
           ],
         ),
       ),
