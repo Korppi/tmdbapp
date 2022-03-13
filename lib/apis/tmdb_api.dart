@@ -2,6 +2,9 @@ import 'package:tmdbapp/apis/apienums.dart';
 import 'package:tmdbapp/models/movie/movie.dart';
 import 'package:tmdbapp/models/tv/tv.dart';
 
+/// Contains all TMDB API related things like apikey, urls etc.
+///
+/// This class only returs correct URIs for different endpoints.
 class TMDBAPI {
   final String _apiKey;
   final String _baseUrl = 'api.themoviedb.org';
