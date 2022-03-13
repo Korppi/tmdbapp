@@ -11,6 +11,11 @@ import 'package:tmdbapp/utils/secrets.dart';
 final tmdbRepository =
     Provider((ref) => TMDBRepository(TMDBAPI(Secrets.getApiKey()!)));
 
+/// Offers methods to call API.
+///
+/// This class does 2 things mostly:
+///   - sends http requests
+///   - transforms http responses to objects and returns them
 class TMDBRepository {
   final TMDBAPI api;
   late final http.Client client;
@@ -53,7 +58,7 @@ class TMDBRepository {
       );
 
   Future<List<T>> getTrending<T>(
-          {required TimeWindow timeWindow, int page = 1}) =>
+          {TimeWindow timeWindow = TimeWindow.week, int page = 1}) =>
       _getData(
         api.trending<T>(timeWindow: timeWindow, page: page),
         (data) {
