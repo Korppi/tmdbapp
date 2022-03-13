@@ -8,4 +8,22 @@ class StatefulListviewModel extends StateNotifier<StatefulListviewState> {
   final Future<List<dynamic>> Function({int page}) onPressed;
   StatefulListviewModel(this.onPressed)
       : super(const StatefulListviewState.init());
+
+  testStates() async {
+    state = StatefulListviewState.loading();
+    await Future.delayed(
+      Duration(seconds: 5),
+    );
+    try {
+      var stuff = await onPressed();
+      state = StatefulListviewState.noError(stuff);
+    } catch (error) {
+      state = StatefulListviewState.noError([]);
+    }
+
+    await Future.delayed(
+      Duration(seconds: 30),
+    );
+    state = StatefulListviewState.loadingMore([]);
+  }
 }
