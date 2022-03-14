@@ -20,36 +20,75 @@ class StatefulListview extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pro = ref.watch(provider);
-    return TextButton(
-        onPressed: () {
-          ref.read(provider.notifier).testStates();
-        },
-        child: pro.when(
-            init: () => VisibilityDetector(
-                key: super.key!,
-                onVisibilityChanged: (VisibilityInfo info) {
-                  ref.read(provider.notifier).testStates();
-                },
-                child: Text('init')),
-            loading: () => Text('loading'),
-            error: (error) => Text('error: $error'),
-            noError: (list) => _buildList(pro, list),
-            loadingMore: (list) => _buildList(pro, list)));
+    debugPrint('width: ${MediaQuery.of(context).size.width}');
+    return Container(
+      height: 200,
+      width: MediaQuery.of(context).size.width,
+      color: Colors.green,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Text(title),
+              Text('Movies'),
+              Expanded(
+                child: Container(
+                  color: Colors.red,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Icon(Icons.arrow_right),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Expanded(
+            child: pro.when(
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              error: (error) => Center(
+                child: Text(
+                  error.toString(),
+                ),
+              ),
+              init: () => VisibilityDetector(
+                key: key!,
+                child: Container(),
+                onVisibilityChanged: (_) =>
+                    ref.read(provider.notifier).testStates(),
+              ),
+              noError: (List<dynamic> list) => _buildList(pro, list),
+              loadingMore: (List<dynamic> oldList) => _buildList(pro, oldList),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   _buildList(StatefulListviewState pro, List list) {
-    var text = pro.maybeWhen(
-        noError: (list) {
-          if (list is List<Movie>) {
-            return list.first.title ?? 'empty movie title';
-          } else if (list is List<Tv>) {
-            return list.first.name ?? 'empty tv name';
-          }
-          return 'i dont know what it is';
-        },
-        orElse: () => 'no error! loading more!');
-    debugPrint('teksti on $text');
-    return Text(text);
+    return ListView.builder(
+      itemCount: list.length,
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (BuildContext context, int index) {
+        var text = '';
+        if (list is List<Movie>) {
+          text = list[index].title!;
+        } else {
+          list as List<Tv>;
+          text = list[index].name!;
+        }
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Container(
+            height: 50,
+            width: 100,
+            color: Colors.yellow,
+          ),
+        );
+      },
+    );
   }
 }
 

@@ -5,8 +5,8 @@ import 'package:tmdbapp/models/tv/tv.dart';
 import 'package:tmdbapp/widgets/states/stateful_listview_state.dart';
 
 class StatefulListviewModel extends StateNotifier<StatefulListviewState> {
-  final Future<List<dynamic>> Function({int page}) onPressed;
-  StatefulListviewModel(this.onPressed)
+  final Future<List<dynamic>> Function({int page}) loadData;
+  StatefulListviewModel(this.loadData)
       : super(const StatefulListviewState.init());
 
   testStates() async {
@@ -15,15 +15,14 @@ class StatefulListviewModel extends StateNotifier<StatefulListviewState> {
       Duration(seconds: 5),
     );
     try {
-      var stuff = await onPressed();
+      var stuff = await loadData();
       state = StatefulListviewState.noError(stuff);
     } catch (error) {
-      state = StatefulListviewState.noError([]);
+      state = StatefulListviewState.error('error :O');
     }
 
     await Future.delayed(
       Duration(seconds: 30),
     );
-    state = StatefulListviewState.loadingMore([]);
   }
 }
