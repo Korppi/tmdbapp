@@ -79,80 +79,48 @@ class MyApp extends HookConsumerWidget {
         body: ListView(
           children: [
             StatefulListview(
-              'Popular Movie',
-              listviewPopularMovie,
+              'Trending movie',
+              listviewTrendingMovie,
               key: UniqueKey(),
-            ),
-            SizedBox(
-              height: 100,
-              width: 100,
-            ),
-            StatefulListview(
-              'Popular Tv',
-              listviewPopularTv,
-              key: UniqueKey(),
-            ),
-            SizedBox(
-              height: 100,
-              width: 100,
-            ),
-            StatefulListview(
-              'TopRated Movie',
-              listviewTopratedMovie,
-              key: UniqueKey(),
-            ),
-            SizedBox(
-              height: 100,
-              width: 100,
-            ),
-            StatefulListview(
-              'TopRated Tv',
-              listviewTopratedTv,
-              key: UniqueKey(),
-            ),
-            SizedBox(
-              height: 100,
-              width: 100,
             ),
             StatefulListview(
               'Now playing',
               listviewNowPlaying,
               key: UniqueKey(),
             ),
-            SizedBox(
-              height: 100,
-              width: 100,
-            ),
             StatefulListview(
-              'Trending movie',
-              listviewTrendingMovie,
+              'Upcoming',
+              listviewUpcoming,
               key: UniqueKey(),
             ),
-            SizedBox(
-              height: 100,
-              width: 100,
+            StatefulListview(
+              'Popular Movie',
+              listviewPopularMovie,
+              key: UniqueKey(),
+            ),
+            StatefulListview(
+              'TopRated Movie',
+              listviewTopratedMovie,
+              key: UniqueKey(),
             ),
             StatefulListview(
               'Trending Tv',
               listviewTrendingTv,
               key: UniqueKey(),
             ),
-            SizedBox(
-              height: 100,
-              width: 100,
-            ),
-            StatefulListview(
-              'Upcoming',
-              listviewUpcoming,
-              key: UniqueKey(),
-            ),
-            SizedBox(
-              height: 100,
-              width: 100,
-            ),
             StatefulListview(
               'Airing Today',
               listviewAiringToday,
+              key: UniqueKey(),
+            ),
+            StatefulListview(
+              'TopRated Tv',
+              listviewTopratedTv,
+              key: UniqueKey(),
+            ),
+            StatefulListview(
+              'Popular Tv',
+              listviewPopularTv,
               key: UniqueKey(),
             ),
           ],
