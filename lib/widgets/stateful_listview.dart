@@ -21,7 +21,8 @@ class StatefulListview extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pro = ref.watch(provider);
-    debugPrint('width: ${MediaQuery.of(context).size.width}');
+    debugPrint(
+        'width: ${MediaQuery.of(context).size.width} $key ${pro.toString().substring(22, 26)}');
     return Container(
       height: 240,
       width: MediaQuery.of(context).size.width,
@@ -57,13 +58,14 @@ class StatefulListview extends HookConsumerWidget {
                 ),
               ),
               init: () => VisibilityDetector(
-                key: key!,
-                child: Container(),
-                onVisibilityChanged: (_) =>
-                    ref.read(provider.notifier).testStates(),
-              ),
-              noError: (List<dynamic> list) => _buildList(pro, list),
-              loadingMore: (List<dynamic> oldList) => _buildList(pro, oldList),
+                  key: key!,
+                  child: Container(),
+                  onVisibilityChanged: (_) {
+                    debugPrint('daa ${pro.toString().substring(22, 26)}');
+                    ref.read(provider.notifier).testStates();
+                  }),
+              noError: (List<dynamic> list) => _buildList(list),
+              loadingMore: (List<dynamic> oldList) => _buildList(oldList),
             ),
           ),
         ],
@@ -71,7 +73,7 @@ class StatefulListview extends HookConsumerWidget {
     );
   }
 
-  _buildList(StatefulListviewState pro, List list) {
+  _buildList(List list) {
     return ListView.builder(
       cacheExtent: 9999,
       itemCount: list.length,
@@ -79,13 +81,14 @@ class StatefulListview extends HookConsumerWidget {
       itemBuilder: (BuildContext context, int index) {
         var text = '';
         var url = '';
-        if (list is List<Movie>) {
+        if (list is List<Movie> &&
+            list[index].posterPath.toString().length > 2) {
           text = list[index].title!;
-          url = 'https://image.tmdb.org/t/p/original' + list[index].posterPath!;
-        } else {
+          url = 'https://image.tmdb.org/t/p/w92' + list[index].posterPath!;
+        } else if (list[index].posterPath.toString().length > 2) {
           list as List<Tv>;
           text = list[index].name!;
-          url = 'https://image.tmdb.org/t/p/original' + list[index].posterPath!;
+          url = 'https://image.tmdb.org/t/p/w92' + list[index].posterPath!;
         }
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 5),
@@ -95,8 +98,8 @@ class StatefulListview extends HookConsumerWidget {
             color: Colors.grey,
             child: Column(
               children: [
-                CachedNetworkImage(
-                  imageUrl: url,
+                Image.network(
+                  url,
                   width: 110,
                   height: 160,
                 ),

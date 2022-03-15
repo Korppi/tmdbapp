@@ -10,19 +10,23 @@ class StatefulListviewModel extends StateNotifier<StatefulListviewState> {
       : super(const StatefulListviewState.init());
 
   testStates() async {
+    var test = false;
+    debugPrint('rt type: ${state.runtimeType}');
+    state.maybeWhen(init: () {
+      debugPrint('is init jee!');
+    }, orElse: () {
+      debugPrint('is not init do noting!');
+      test = true;
+    });
+    if (test) {
+      return;
+    }
     state = StatefulListviewState.loading();
-    await Future.delayed(
-      Duration(seconds: 5),
-    );
     try {
       var stuff = await loadData();
       state = StatefulListviewState.noError(stuff);
     } catch (error) {
-      state = StatefulListviewState.error('error :O');
+      state = StatefulListviewState.error(error.toString());
     }
-
-    await Future.delayed(
-      Duration(seconds: 30),
-    );
   }
 }
