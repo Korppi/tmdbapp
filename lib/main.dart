@@ -65,11 +65,11 @@ final listviewAiringToday =
   (ref) => StatefulListviewModel(ref.read(tmdbRepository).getAiringToday),
 );
 
-class MyApp extends HookConsumerWidget {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TMDB App',
       home: Scaffold(
@@ -77,6 +77,7 @@ class MyApp extends HookConsumerWidget {
           title: const Text('TMDB App by Teppo'),
         ),
         body: ListView(
+          cacheExtent: 9999,
           children: [
             StatefulListview(
               'Trending movie',
