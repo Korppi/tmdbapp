@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -22,18 +23,21 @@ class StatefulListview extends HookConsumerWidget {
     final pro = ref.watch(provider);
     debugPrint('width: ${MediaQuery.of(context).size.width}');
     return Container(
-      height: 200,
+      height: 240,
       width: MediaQuery.of(context).size.width,
-      color: Colors.green,
+      color: Colors.grey,
       child: Column(
         children: [
           Row(
             children: [
-              Text(title),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(title),
+              ),
               Text('Movies'),
               Expanded(
                 child: Container(
-                  color: Colors.red,
+                  color: Colors.grey,
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: Icon(Icons.arrow_right),
@@ -69,22 +73,40 @@ class StatefulListview extends HookConsumerWidget {
 
   _buildList(StatefulListviewState pro, List list) {
     return ListView.builder(
+      cacheExtent: 9999,
       itemCount: list.length,
       scrollDirection: Axis.horizontal,
       itemBuilder: (BuildContext context, int index) {
         var text = '';
+        var url = '';
         if (list is List<Movie>) {
           text = list[index].title!;
+          url = 'https://image.tmdb.org/t/p/original' + list[index].posterPath!;
         } else {
           list as List<Tv>;
           text = list[index].name!;
+          url = 'https://image.tmdb.org/t/p/original' + list[index].posterPath!;
         }
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 5),
           child: Container(
-            height: 50,
-            width: 100,
-            color: Colors.yellow,
+            height: 180,
+            width: 110,
+            color: Colors.grey,
+            child: Column(
+              children: [
+                CachedNetworkImage(
+                  imageUrl: url,
+                  width: 110,
+                  height: 160,
+                ),
+                Text(
+                  text,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           ),
         );
       },
