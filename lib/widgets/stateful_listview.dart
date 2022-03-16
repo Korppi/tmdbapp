@@ -22,7 +22,6 @@ class StatefulListview extends HookConsumerWidget {
     return Container(
       height: 240,
       width: MediaQuery.of(context).size.width,
-      color: Colors.grey,
       child: Column(
         children: [
           Row(
@@ -34,10 +33,9 @@ class StatefulListview extends HookConsumerWidget {
               const Text('Movies'),
               Expanded(
                 child: Container(
-                  color: Colors.grey,
                   child: const Align(
                     alignment: Alignment.centerRight,
-                    child: Icon(Icons.arrow_right),
+                    child: Icon(Icons.arrow_forward),
                   ),
                 ),
               ),
@@ -95,26 +93,22 @@ class StatefulListview extends HookConsumerWidget {
           text = list[index].name!;
           url = 'https://image.tmdb.org/t/p/w92' + list[index].posterPath!;
         }
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5),
-          child: Container(
-            height: 180,
-            width: 110,
-            color: Colors.grey,
-            child: Column(
-              children: [
-                Image.network(
-                  url,
-                  width: 110,
-                  height: 160,
-                ),
-                Text(
-                  text,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
+        return Container(
+          height: 180,
+          width: 100,
+          child: Column(
+            children: [
+              Image.network(
+                url,
+                width: 110,
+                height: 160,
+              ),
+              Text(
+                text,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
           ),
         );
       },
