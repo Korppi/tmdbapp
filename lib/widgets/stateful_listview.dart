@@ -1,6 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tmdbapp/models/movie/movie.dart';
 import 'package:tmdbapp/models/tv/tv.dart';
@@ -13,16 +11,12 @@ class StatefulListview extends HookConsumerWidget {
   final String title;
   final StateNotifierProvider<StatefulListviewModel, StatefulListviewState>
       provider;
-  StatefulListview(this.title, this.provider, {required Key key})
-      : super(key: key) {
-    debugPrint('is there key? $key $title');
-  }
+  const StatefulListview(this.title, this.provider, {required Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pro = ref.watch(provider);
-    debugPrint(
-        'width: ${MediaQuery.of(context).size.width} $key ${pro.toString().substring(22, 26)}');
     return Container(
       height: 240,
       width: MediaQuery.of(context).size.width,
@@ -35,11 +29,11 @@ class StatefulListview extends HookConsumerWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(title),
               ),
-              Text('Movies'),
+              const Text('Movies'),
               Expanded(
                 child: Container(
                   color: Colors.grey,
-                  child: Align(
+                  child: const Align(
                     alignment: Alignment.centerRight,
                     child: Icon(Icons.arrow_right),
                   ),
@@ -53,16 +47,13 @@ class StatefulListview extends HookConsumerWidget {
                 child: CircularProgressIndicator(),
               ),
               error: (error) => Center(
-                child: Text(
-                  error.toString(),
-                ),
+                child: Text(error),
               ),
               init: () => VisibilityDetector(
                   key: key!,
                   child: Container(),
-                  onVisibilityChanged: (_) {
-                    debugPrint('daa ${pro.toString().substring(22, 26)}');
-                    ref.read(provider.notifier).testStates();
+                  onVisibilityChanged: (info) {
+                    ref.read(provider.notifier).initLoad();
                   }),
               noError: (List<dynamic> list) => _buildList(list),
               loadingMore: (List<dynamic> oldList) => _buildList(oldList),
@@ -74,6 +65,7 @@ class StatefulListview extends HookConsumerWidget {
   }
 
   _buildList(List list) {
+    debugPrint('## rebuilding list $key!');
     return ListView.builder(
       cacheExtent: 9999,
       itemCount: list.length,
@@ -91,7 +83,7 @@ class StatefulListview extends HookConsumerWidget {
           url = 'https://image.tmdb.org/t/p/w92' + list[index].posterPath!;
         }
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 5),
           child: Container(
             height: 180,
             width: 110,
@@ -116,15 +108,3 @@ class StatefulListview extends HookConsumerWidget {
     );
   }
 }
-
-
-/*
-
-okei... onko vaan helpompi tehdä ihan yksittäiset widgetit? 
-
-eli on TopRatedMoviesListView ja PopularMoviesListView ? mut tää on työläs... 
-
-parempi vois olla että ois se MyListView ja jollain parametrillä se osaa hakea 
-eri juttuja ja selaa eri juttuja 
-
-*/
