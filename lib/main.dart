@@ -75,7 +75,11 @@ class MyApp extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             const SliverAppBar(
+              leading: Icon(Icons.person),
               title: Text('TMDB App by Teppo'),
+              actions: [
+                Icon(Icons.search),
+              ],
             ),
             SliverList(
               delegate: SliverChildListDelegate.fixed([
