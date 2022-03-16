@@ -20,13 +20,4 @@ class StatefulListviewState with _$StatefulListviewState {
   /// same as NoError but in this state we are also loading next page
   const factory StatefulListviewState.loadingMore(List<dynamic> oldList) =
       _LoadingMore;
-
-  /// states move like following:
-  /// starting state is INIT
-  /// from INIT to LOADING to
-  ///     a) ERROR(String message) (will be stuck here forever) or
-  ///     b) NOERROR(List<dynamic> list)
-  /// from NOERROR to LOADINGMORE(List<dynamic> oldList) to
-  ///     a) ERROR(String message) (will be stuck here forever) or
-  ///     b) NOERROR(List<dynamic> list)
 }
