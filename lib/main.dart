@@ -72,56 +72,59 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'TMDB App',
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('TMDB App by Teppo'),
-        ),
-        body: ListView(
-          cacheExtent: 9999,
-          children: [
-            StatefulListview(
-              'Trending movie',
-              listviewTrendingMovie,
-              key: UniqueKey(),
+        body: CustomScrollView(
+          slivers: [
+            const SliverAppBar(
+              title: Text('TMDB App by Teppo'),
             ),
-            StatefulListview(
-              'Now playing',
-              listviewNowPlaying,
-              key: UniqueKey(),
-            ),
-            StatefulListview(
-              'Upcoming',
-              listviewUpcoming,
-              key: UniqueKey(),
-            ),
-            StatefulListview(
-              'Popular Movie',
-              listviewPopularMovie,
-              key: UniqueKey(),
-            ),
-            StatefulListview(
-              'TopRated Movie',
-              listviewTopratedMovie,
-              key: UniqueKey(),
-            ),
-            StatefulListview(
-              'Trending Tv',
-              listviewTrendingTv,
-              key: UniqueKey(),
-            ),
-            StatefulListview(
-              'Airing Today',
-              listviewAiringToday,
-              key: UniqueKey(),
-            ),
-            StatefulListview(
-              'TopRated Tv',
-              listviewTopratedTv,
-              key: UniqueKey(),
-            ),
-            StatefulListview(
-              'Popular Tv',
-              listviewPopularTv,
-              key: UniqueKey(),
+            SliverList(
+              delegate: SliverChildListDelegate.fixed([
+                StatefulListview(
+                  'Trending movie',
+                  listviewTrendingMovie,
+                  key: UniqueKey(),
+                ),
+                StatefulListview(
+                  'Now playing',
+                  listviewNowPlaying,
+                  key: UniqueKey(),
+                ),
+                StatefulListview(
+                  'Upcoming',
+                  listviewUpcoming,
+                  key: UniqueKey(),
+                ),
+                StatefulListview(
+                  'Popular Movie',
+                  listviewPopularMovie,
+                  key: UniqueKey(),
+                ),
+                StatefulListview(
+                  'TopRated Movie',
+                  listviewTopratedMovie,
+                  key: UniqueKey(),
+                ),
+                StatefulListview(
+                  'Trending Tv',
+                  listviewTrendingTv,
+                  key: UniqueKey(),
+                ),
+                StatefulListview(
+                  'Airing Today',
+                  listviewAiringToday,
+                  key: UniqueKey(),
+                ),
+                StatefulListview(
+                  'TopRated Tv',
+                  listviewTopratedTv,
+                  key: UniqueKey(),
+                ),
+                StatefulListview(
+                  'Popular Tv',
+                  listviewPopularTv,
+                  key: UniqueKey(),
+                ),
+              ]),
             ),
           ],
         ),
