@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:tmdbapp/models/movie/movie.dart';
-import 'package:tmdbapp/models/tv/tv.dart';
 import 'package:tmdbapp/widgets/states/stateful_listview_state.dart';
 
 class StatefulListviewModel extends StateNotifier<StatefulListviewState> {
@@ -9,19 +6,19 @@ class StatefulListviewModel extends StateNotifier<StatefulListviewState> {
   StatefulListviewModel(this.loadData)
       : super(const StatefulListviewState.init());
 
-  testStates() async {
-    var test = false;
-    debugPrint('rt type: ${state.runtimeType}');
+  initLoad() async {
+    // VisibilityDetector event calls this twice before state actually changes
+    // so we need these few lines below to do check that we are runnig with right state...
+
+    // TODO: replace VisibilityDetector with something else and clean this method
+    var canContinue = true;
     state.maybeWhen(init: () {
-      debugPrint('is init jee!');
+      //
     }, orElse: () {
-      debugPrint('is not init do noting!');
-      test = true;
+      canContinue = false;
     });
-    if (test) {
-      return;
-    }
-    state = StatefulListviewState.loading();
+    if (!canContinue) return;
+    state = const StatefulListviewState.loading();
     try {
       var stuff = await loadData();
       state = StatefulListviewState.noError(stuff);
