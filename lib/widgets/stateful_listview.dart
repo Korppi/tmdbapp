@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tmdbapp/models/movie/movie.dart';
 import 'package:tmdbapp/models/tv/tv.dart';
@@ -17,6 +18,7 @@ class StatefulListview extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pro = ref.watch(provider);
+
     return Container(
       height: 240,
       width: MediaQuery.of(context).size.width,
@@ -55,8 +57,8 @@ class StatefulListview extends HookConsumerWidget {
                   onVisibilityChanged: (info) {
                     ref.read(provider.notifier).initLoad();
                   }),
-              noError: (List<dynamic> list) => _buildList(list),
-              loadingMore: (List<dynamic> oldList) => _buildList(oldList),
+              noError: (List<dynamic> list) => _buildList(list, ref),
+              loadingMore: (List<dynamic> oldList) => _buildList(oldList, ref),
             ),
           ),
         ],
@@ -64,9 +66,20 @@ class StatefulListview extends HookConsumerWidget {
     );
   }
 
-  _buildList(List list) {
+  _buildList(List list, WidgetRef ref) {
     debugPrint('## rebuilding list $key!');
+    final controller = useScrollController();
+    if (!controller.hasListeners) {
+      controller.addListener(() {
+        if (controller.offset >= controller.position.maxScrollExtent) {
+          ref.read(provider.notifier).loadMoreData();
+        }
+      });
+    } else {
+      debugPrint('there are already listeners! ');
+    }
     return ListView.builder(
+      controller: controller,
       cacheExtent: 9999,
       itemCount: list.length,
       scrollDirection: Axis.horizontal,
