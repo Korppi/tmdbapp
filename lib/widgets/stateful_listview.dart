@@ -6,6 +6,7 @@ import 'package:tmdbapp/models/tv/tv.dart';
 import 'package:tmdbapp/widgets/states/stateful_listview_model.dart';
 import 'package:tmdbapp/widgets/states/stateful_listview_state.dart';
 import 'package:visibility_detector/visibility_detector.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /// List that has its own state
 class StatefulListview extends HookConsumerWidget {
@@ -82,29 +83,72 @@ class StatefulListview extends HookConsumerWidget {
       itemBuilder: (BuildContext context, int index) {
         var text = '';
         var url = '';
+        var score = 0.0;
         if (list is List<Movie> &&
             list[index].posterPath.toString().length > 2) {
           text = list[index].title!;
           url = 'https://image.tmdb.org/t/p/w92' + list[index].posterPath!;
+          score = list[index].voteAverage ?? 0.0;
         } else if (list[index].posterPath.toString().length > 2) {
           list as List<Tv>;
           text = list[index].name!;
           url = 'https://image.tmdb.org/t/p/w92' + list[index].posterPath!;
+          score = list[index].voteAverage ?? 0.0;
         }
         return Container(
           height: 180,
           width: 100,
           child: Column(
             children: [
-              Image.network(
-                url,
-                width: 110,
-                height: 160,
+              Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(30.0),
+                    child: Image.network(
+                      url,
+                      width: 110,
+                      height: 160,
+                    ),
+                  ),
+                  Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 16.0, top: 24.0),
+                        child: Container(
+                          child: Text('$score'),
+                          color: Colors.white,
+                        ),
+                      )),
+                ],
               ),
-              Text(
-                text,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+              Row(
+                children: [
+                  Container(
+                    alignment: Alignment.topLeft,
+                    width: 76,
+                    height: 30,
+                    child: Text(
+                      text,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  Container(
+                    height: 30,
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      alignment: Alignment.topCenter,
+                      constraints: BoxConstraints(),
+                      onPressed: () {
+                        debugPrint('pressed dot icon thing');
+                      },
+                      icon: FaIcon(
+                        FontAwesomeIcons.ellipsisV,
+                        size: 12,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
