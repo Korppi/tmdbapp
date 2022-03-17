@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tmdbapp/models/movie/movie.dart';
 import 'package:tmdbapp/models/tv/tv.dart';
@@ -16,6 +17,7 @@ Future<void> main() async {
     // if there is no token then somethings wrong and we cannot start app
     throw ('no token!');
   }
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -75,6 +77,7 @@ class MyApp extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             const SliverAppBar(
+              floating: true,
               leading: Icon(Icons.person),
               title: Text('TMDB App by Teppo'),
               actions: [
@@ -129,6 +132,50 @@ class MyApp extends StatelessWidget {
                   key: UniqueKey(),
                 ),
               ]),
+            ),
+          ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          selectedItemColor: Colors.grey,
+          unselectedItemColor: Colors.grey,
+          selectedFontSize: 12,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home,
+                color: Colors.grey,
+              ),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.search,
+                color: Colors.grey,
+              ),
+              label: 'Search',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.computer,
+                color: Colors.grey,
+              ),
+              label: 'TV Shows',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.bookmark,
+                color: Colors.grey,
+              ),
+              label: 'Watchlist',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person,
+                color: Colors.grey,
+              ),
+              label: 'Profile',
             ),
           ],
         ),
