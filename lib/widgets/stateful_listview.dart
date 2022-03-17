@@ -31,12 +31,10 @@ class StatefulListview extends HookConsumerWidget {
                 child: Text(title),
               ),
               const Text('Movies'),
-              Expanded(
-                child: Container(
-                  child: const Align(
-                    alignment: Alignment.centerRight,
-                    child: Icon(Icons.arrow_forward),
-                  ),
+              const Expanded(
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Icon(Icons.arrow_forward),
                 ),
               ),
             ],
