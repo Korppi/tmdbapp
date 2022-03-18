@@ -18,7 +18,7 @@ class StatefulListviewModel extends StateNotifier<StatefulListviewState> {
     // TODO: replace VisibilityDetector with something else and clean this method
     var canContinue = true;
     state.maybeWhen(init: () {
-      //
+      // do nothing
     }, orElse: () {
       canContinue = false;
     });
