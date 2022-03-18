@@ -20,7 +20,7 @@ class StatefulListview extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final pro = ref.watch(provider);
 
-    return Container(
+    return SizedBox(
       height: 240,
       width: MediaQuery.of(context).size.width,
       child: Column(
@@ -66,6 +66,7 @@ class StatefulListview extends HookConsumerWidget {
   _buildList(List list, WidgetRef ref) {
     debugPrint('## rebuilding list $key!');
     final controller = useScrollController();
+    // ignore: invalid_use_of_protected_member
     if (!controller.hasListeners) {
       controller.addListener(() {
         if (controller.offset >= controller.position.maxScrollExtent) {
@@ -81,6 +82,7 @@ class StatefulListview extends HookConsumerWidget {
       itemCount: list.length,
       scrollDirection: Axis.horizontal,
       itemBuilder: (BuildContext context, int index) {
+        debugPrint('index is $index and length is ${list.length}');
         var text = '';
         var url = '';
         var score = 0.0;
@@ -95,7 +97,7 @@ class StatefulListview extends HookConsumerWidget {
           url = 'https://image.tmdb.org/t/p/w92' + list[index].posterPath!;
           score = list[index].voteAverage ?? 0.0;
         }
-        return Container(
+        return SizedBox(
           height: 180,
           width: 100,
           child: Column(
@@ -115,8 +117,11 @@ class StatefulListview extends HookConsumerWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(right: 16.0, top: 24.0),
                         child: Container(
-                          child: Text('$score'),
-                          color: Colors.white,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(4)),
+                          width: 30,
+                          child: Center(child: Text('$score')),
                         ),
                       )),
                 ],
@@ -133,16 +138,16 @@ class StatefulListview extends HookConsumerWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     height: 30,
                     child: IconButton(
                       padding: EdgeInsets.zero,
                       alignment: Alignment.topCenter,
-                      constraints: BoxConstraints(),
+                      constraints: const BoxConstraints(),
                       onPressed: () {
                         debugPrint('pressed dot icon thing');
                       },
-                      icon: FaIcon(
+                      icon: const FaIcon(
                         FontAwesomeIcons.ellipsisV,
                         size: 12,
                       ),
