@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tmdbapp/models/movie/movie.dart';
 import 'package:tmdbapp/models/tv/tv.dart';
 import 'package:tmdbapp/repositories/tmdb_repository.dart';
+import 'package:tmdbapp/themes/custom_theme.dart';
 import 'package:tmdbapp/utils/secrets.dart';
 import 'package:tmdbapp/widgets/stateful_listview.dart';
 import 'package:tmdbapp/widgets/states/stateful_listview_model.dart';
@@ -74,6 +75,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: customLightTheme(),
+      darkTheme: customDarkTheme(),
+      themeMode: ThemeMode.light, // TODO: change for system OR from settings
       title: 'TMDB App',
       home: Scaffold(
         body: CustomScrollView(
