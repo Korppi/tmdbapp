@@ -29,7 +29,10 @@ class StatefulListview extends HookConsumerWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(title),
+                child: Text(
+                  title,
+                  style: Theme.of(context).textTheme.headline1,
+                ),
               ),
               const Text('Movies'),
               const Expanded(
