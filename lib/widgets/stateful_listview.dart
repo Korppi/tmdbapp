@@ -87,18 +87,19 @@ class StatefulListview extends HookConsumerWidget {
       itemBuilder: (BuildContext context, int index) {
         debugPrint('index is $index and length is ${list.length}');
         var text = '';
-        var url = '';
+        String? url;
         var score = 0.0;
-        if (list is List<Movie> &&
-            list[index].posterPath.toString().length > 2) {
+        var posterPath = list[index].posterPath;
+        if (list is List<Movie> && posterPath != null) {
           text = list[index].title!;
-          url = 'https://image.tmdb.org/t/p/w92' + list[index].posterPath!;
+          url = 'https://image.tmdb.org/t/p/w92' + list[index].posterPath;
           score = list[index].voteAverage ?? 0.0;
-        } else if (list[index].posterPath.toString().length > 2) {
-          list as List<Tv>;
+        } else if (list is List<Tv> && posterPath != null) {
           text = list[index].name!;
-          url = 'https://image.tmdb.org/t/p/w92' + list[index].posterPath!;
+          url = 'https://image.tmdb.org/t/p/w92' + posterPath;
           score = list[index].voteAverage ?? 0.0;
+        } else {
+          debugPrint('daa!');
         }
         return SizedBox(
           height: 180,
@@ -109,11 +110,21 @@ class StatefulListview extends HookConsumerWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(30.0),
-                    child: Image.network(
-                      url,
-                      width: 110,
-                      height: 160,
-                    ),
+                    child: url != null
+                        ? Image.network(
+                            url,
+                            width: 110,
+                            height: 160,
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Container(
+                              width: 110,
+                              height: 140,
+                              color: Colors
+                                  .cyan, // TODO: check these empty TV shows... there are no name, points, anything O_o
+                            ),
+                          ),
                   ),
                   Align(
                       alignment: Alignment.topRight,
