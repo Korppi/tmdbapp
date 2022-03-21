@@ -14,6 +14,8 @@ ThemeData customLightTheme() {
   return lightTheme.copyWith(
     textTheme: _customLightThemesTextTheme(lightTheme.textTheme),
     primaryColor: const Color(0xffce107c),
+    appBarTheme: const AppBarTheme(backgroundColor: Colors.green),
+    canvasColor: Colors.yellow,
   );
 }
 
