@@ -4,9 +4,7 @@ ThemeData customLightTheme() {
   TextTheme _customLightThemesTextTheme(TextTheme base) {
     return base.copyWith(
       headline1: base.headline1?.copyWith(
-        fontSize: 22.0,
-        color: Colors.green,
-      ),
+          fontSize: 22.0, color: Colors.black, fontWeight: FontWeight.bold),
     );
   }
 
