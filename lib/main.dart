@@ -150,8 +150,12 @@ class MyApp extends StatelessWidget {
           items: const [
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.home,
+                Icons.home_outlined,
                 color: Colors.grey,
+              ),
+              activeIcon: Icon(
+                Icons.home,
+                color: Colors.red,
               ),
               label: 'Home',
             ),
@@ -164,22 +168,30 @@ class MyApp extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.computer,
+                Icons.computer, // TODO: find correct icon
                 color: Colors.grey,
               ),
               label: 'TV Shows',
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.bookmark,
+                Icons.bookmark_outline,
                 color: Colors.grey,
+              ),
+              activeIcon: Icon(
+                Icons.bookmark,
+                color: Colors.red,
               ),
               label: 'Watchlist',
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.person,
+                Icons.person_outline,
                 color: Colors.grey,
+              ),
+              activeIcon: Icon(
+                Icons.person,
+                color: Colors.red,
               ),
               label: 'Profile',
             ),
